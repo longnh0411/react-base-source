@@ -7,8 +7,13 @@ const getParamInURL = (key : string) => {
     return value ? value : undefined; 
 }
 
+export const getImageUrl = (path: string) => {
+    return new URL(`../assets/${path}`, import.meta.url).href;
+};
+
 const utils = {
-    getParamInURL
+    getParamInURL,
+    getImageUrl
 }
 
 export default utils;
