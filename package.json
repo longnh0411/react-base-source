@@ -4,7 +4,6 @@
   "version": "0.0.0",
   "type": "module",
   "homepage": "https://longnh0411.github.io/react-base-source",
-  
   "scripts": {
     "dev": "vite",
     "build": "vite build",
