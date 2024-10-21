@@ -3,6 +3,7 @@ import { Input,Form, FormProps, Checkbox, Button } from "antd";
 import "./index.css";
 import { T_LoginModel } from "./model";
 import TextRequiredComponent from "../../component/TextRequired";
+import utils from "../../utils/utils";
 
 const LoginPageComponent : React.FC = () => {
 
@@ -11,37 +12,27 @@ const LoginPageComponent : React.FC = () => {
     };
 
     return (
-        <div className="bg-screen">
-            <div 
-                className="
-                    w-3/12
-                    p-12
-                    rounded-xl 
-                    bg-white 
-                    shadow-[0px_0px_0px_1px_rgba(9,9,11,0.07),0px_2px_2px_0px_rgba(9,9,11,0.05)] 
-                    dark:bg-zinc-900 dark:shadow-[0px_0px_0px_1px_rgba(255,255,255,0.1)] 
-                    dark:before:pointer-events-none 
-                    dark:before:absolute dark:before:-inset-px 
-                    dark:before:rounded-xl 
-                    dark:before:shadow-[0px_2px_8px_0px_rgba(0,_0,_0,_0.20),_0px_1px_0px_0px_rgba(255,_255,_255,_0.06)_inset] 
-                    forced-colors:outline
-                "
-            >
+        <div className="wrap-login-page flex-col-reverse sm:flex-col-reverse md:flex-row lg:flex-row xl:flex-row">
+            <div className="w-full sm:w-full md:w-6/12 lg:w-6/12 xl:w-6/12 flex items-center justify-center">
                 <Form
                     name="loginForm"
                     layout="vertical"
                     initialValues={{ rememberMe : true }}
                     onFinish={onFinish}
+                    className="w-full sm:w-full md:w-10/12 lg:w-8/12 xl:w-6/12"
                     autoComplete="off"
                 >
-                    <span className="font-semibold text-lg flex mb-6">Đăng nhập</span>
+                    <span className="font-bold text-3xl flex mb-6" style={{"color" : "#0C1421"}}>Welcome Back 👋</span>
+                    <span className="font-normal text-xl" style={{"color" : "#313957"}}>Today is a new day. It's your day. You shape it. 
+                    Sign in to start managing your projects.</span>
                     <Form.Item<T_LoginModel>
                         label={<TextRequiredComponent label={"Tài khoản"}/>}
                         required={false}
                         name="userName"
+                        className="mt-12"
                         rules={[{ required: true, message: 'Vui lòng nhập tài khoản!' }]}
                     >
-                        <Input placeholder="Nhập tài khoản"/>
+                        <Input className="h-12" placeholder="Nhập tài khoản"/>
                     </Form.Item>
 
                     <Form.Item<T_LoginModel>
@@ -50,30 +41,47 @@ const LoginPageComponent : React.FC = () => {
                         name="password"
                         rules={[{ required: true, message: 'Vui lòng nhập mật khẩu!' }]}
                     >
-                        <Input.Password placeholder="Nhập mật khẩu" />
+                        <Input.Password className="h-12" placeholder="Nhập mật khẩu" />
                     </Form.Item>
 
-                    <div className="flex w-full justify-between">
-                        <Form.Item<T_LoginModel>
-                            name="rememberMe"
-                            valuePropName="checked"
-                        >
-                            <Checkbox>Ghi nhớ đăng nhập</Checkbox>
-                        </Form.Item>
+                    <div className="flex w-full justify-end">
                         <Form.Item>
-                            <span className="text-base font-semibold cursor-pointer">Quên mật khẩu?</span>
+                            <span className="text-base font-semibold cursor-pointer" style={{"color" : "#1E4AE9"}}>Quên mật khẩu?</span>
                         </Form.Item>
                     </div>
 
                     <Form.Item>
-                        <Button className="w-full" type="primary" htmlType="submit">
+                        <Button className="w-full h-12 text-white text-xl" style={{"backgroundColor" : "#162D3A"}} type="primary" htmlType="submit">
                             Đăng nhập
                         </Button>
                     </Form.Item>
 
-                    <span className="text-sm text-gray-500">Chưa có tài khoản? <span className="text-black font-semibold cursor-pointer">Đăng ký</span></span>
+                    <div className="flex items-center w-full">  
+                        <div className="border-t border-gray-300 flex-1"></div>
+                        <span className="hidden sm:hidden md:hidden lg:block xl:block px-4 text-base font-normal" style={{"color" : "#313957"}}>hoặc</span>
+                        <span className="block sm:block md:block lg:hidden xl:hidden     px-4 text-base font-normal" style={{"color" : "#313957"}}>hoặc đăng nhập với</span>
+                        <div className="border-t border-gray-300 flex-1"></div>
+                    </div>
 
+                    <div className="flex w-full flex-row lg:flex-col xl:flex-col mt-6 gap-4 items-center">
+                        <Button className="w-full h-12 text-base text-left flex items-center justify-center" style={{"backgroundColor" : "#F3F9FA","color" : "#313957"}} type="primary" htmlType="submit">
+                            <img className="mr-2" src={utils.getImageUrl("Google.svg")} alt="google logo" /> 
+                            Google
+                        </Button>
+
+                        <Button className="w-full h-12 text-base text-left flex items-center justify-center" style={{"backgroundColor" : "#F3F9FA","color" : "#313957"}} type="primary" htmlType="submit">
+                            <img className="mr-2" src={utils.getImageUrl("Facebook.svg")} alt="facebook logo" /> 
+                            FaceBook
+                        </Button>
+                    </div>
+                    
+                    <div className="w-full flex items-center justify-center mt-12">
+                        <span className="text-lg">Không có tài khoản? <span style={{"color":"#1E4AE9"}}>Đăng ký</span></span>
+                    </div>
                 </Form>
+            </div>
+            <div className="w-full sm:w-full md:w-6/12 lg:w-6/12 xl:w-6/12 rounded-3xl overflow-hidden h-full">
+                <img className="w-full h-full object-cover" src={utils.getImageUrl("login_wallper.svg")} alt={"login wallper"}/>
             </div>
         </div>
         

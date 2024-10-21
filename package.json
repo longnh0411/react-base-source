@@ -5,7 +5,7 @@
   "type": "module",
   "homepage": "https://longnh0411.github.io/react-base-source",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port=3000",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
