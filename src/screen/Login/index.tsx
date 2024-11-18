@@ -4,11 +4,21 @@ import "./index.css";
 import { T_LoginModel } from "./model";
 import TextRequiredComponent from "../../component/TextRequired";
 import utils from "../../utils/utils";
+import ApiService from "../../utils/api_serice";
+import ConfigConst from "../../config";
 
 const LoginPageComponent : React.FC = () => {
 
-    const onFinish: FormProps<T_LoginModel>['onFinish'] = (values) => {
-        console.log('Success:', values);
+    const onFinish: FormProps<T_LoginModel>['onFinish'] = async (values) => {
+        let body = {
+            username : values.username,
+            password : values.password,
+            remember : values.remember
+        }
+        let res = await ApiService.post(ConfigConst.API_URL.authService.login, body);
+        if(res){
+            console.log("res: ", res);
+        }
     };
 
     return (
@@ -28,7 +38,7 @@ const LoginPageComponent : React.FC = () => {
                     <Form.Item<T_LoginModel>
                         label={<TextRequiredComponent label={"Tài khoản"}/>}
                         required={false}
-                        name="userName"
+                        name="username"
                         className="mt-12"
                         rules={[{ required: true, message: 'Vui lòng nhập tài khoản!' }]}
                     >
@@ -55,25 +65,6 @@ const LoginPageComponent : React.FC = () => {
                             Đăng nhập
                         </Button>
                     </Form.Item>
-
-                    <div className="flex items-center w-full">  
-                        <div className="border-t border-gray-300 flex-1"></div>
-                        <span className="hidden sm:hidden md:hidden lg:block xl:block px-4 text-base font-normal" style={{"color" : "#313957"}}>hoặc</span>
-                        <span className="block sm:block md:block lg:hidden xl:hidden     px-4 text-base font-normal" style={{"color" : "#313957"}}>hoặc đăng nhập với</span>
-                        <div className="border-t border-gray-300 flex-1"></div>
-                    </div>
-
-                    <div className="flex w-full flex-row lg:flex-col xl:flex-col mt-6 gap-4 items-center">
-                        <Button className="w-full h-12 text-base text-left flex items-center justify-center" style={{"backgroundColor" : "#F3F9FA","color" : "#313957"}} type="primary" htmlType="submit">
-                            <img className="mr-2" src={utils.getImageUrl("Google.svg")} alt="google logo" /> 
-                            Google
-                        </Button>
-
-                        <Button className="w-full h-12 text-base text-left flex items-center justify-center" style={{"backgroundColor" : "#F3F9FA","color" : "#313957"}} type="primary" htmlType="submit">
-                            <img className="mr-2" src={utils.getImageUrl("Facebook.svg")} alt="facebook logo" /> 
-                            FaceBook
-                        </Button>
-                    </div>
                     
                     <div className="w-full flex items-center justify-center mt-12">
                         <span className="text-lg">Không có tài khoản? <span style={{"color":"#1E4AE9"}}>Đăng ký</span></span>

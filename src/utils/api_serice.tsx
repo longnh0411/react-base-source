@@ -19,7 +19,7 @@ const handerError = (error : any) => {
   if(error.code === "ERR_NETWORK"){
     ShowErrorMessage("Không thể kết nối đến máy chủ.");
   }else{
-    ShowErrorMessage(error?.response?.data?.result?.error?.validationErrors[0].message ?? "Có lỗi xảy ra");
+    ShowErrorMessage(error?.response?.data?.message);
   }
 }
 
@@ -42,6 +42,7 @@ const ApiService = {
         return response.data;
       }
     } catch (error) {
+      console.log("error: ", error);
       handerError(error);
     }
   },

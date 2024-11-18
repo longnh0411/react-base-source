@@ -1,5 +1,5 @@
 export interface T_LoginModel {
-    userName : string;
+    username : string;
     password : string;
-    rememberMe : boolean;
+    remember : boolean;
 }
