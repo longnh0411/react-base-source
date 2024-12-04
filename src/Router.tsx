@@ -12,7 +12,7 @@ const RoutesComponent = () => {
     { path: '/', element: <Home /> },
     { path: '/login', element : <LoginPageComponent/>},
     { path: '/403', element: <NotHavePermission /> },
-    { path: '/*', extract: true, element: <LoginPageComponent /> },
+    { path: '/*', extract: true, element: <NotFoundComponent /> },
   ];
 
   const element = useRoutes(routes);
