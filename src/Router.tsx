@@ -4,8 +4,10 @@ import Home from './screen/Home/page';
 import NotHavePermission from './screen/403';
 import LoginPageComponent from "./screen/Login"
 import NotFoundComponent from './screen/404';
+import googleAnalyticsService from './utils/google_analytics';
 
 const RoutesComponent = () => {
+  googleAnalyticsService.sendPageView();
   const routes = [
     { path: '/', element: <Home /> },
     { path: '/login', element : <LoginPageComponent/>},
